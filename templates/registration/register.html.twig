@@ -1,19 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <h1 class="title">Registration Form</h1>
+                    {{ form_start(registrationForm) }}
 
-    {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                    <div class="field">
+                        {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'label' }}) }}
+                        <div class="control">
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'input' }}) }}
+                        </div>
+                    </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    <div class="field">
+                        {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'label' }}) }}
+                        <div class="control">
+                            {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'input' }}) }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        {{ form_label(registrationForm.plainPassword, 'Repeat Password', {'label_attr': {'class': 'label' }}) }}
+                        <div class="control">
+                            {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'input' }}) }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Register</button>
+
+                        </div>
+                    </div>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
