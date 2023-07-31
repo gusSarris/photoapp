@@ -1,0 +1,32 @@
+<header class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <!-- Logo -->
+                <div class="column">
+                    <a href={{ path('app_main') }}>
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                    </a>
+                    
+                </div>
+                <!-- Navigation -->
+                <nav class="column is-two-fifths">
+                    <ul class="is-flex is-justify-content-space-between">
+                        <li><a href={{ path('app_main') }}>Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </nav>
+                <!-- Login Section -->
+                <div class="column">
+                    <div class="buttons is-pulled-right">
+                        <a class="button is-light" href={{ path('app_register') }}>Register</a>
+                        <a class="button is-light" href={{ path('app_login') }}>Log In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
