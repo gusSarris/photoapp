@@ -1,0 +1,11 @@
+<!-- Login Section -->
+<div class="column">
+    <div class="buttons is-pulled-right">
+         {% if is_granted('ROLE_USER') %}
+           <a class="button is-light" href={{ path('app_logout') }}>Logout</a>
+        {% else %}
+            <a class="button is-light" href={{ path('app_register') }}>Register</a>
+            <a class="button is-light" href={{ path('app_login') }}>Log In</a>
+        {% endif %}
+    </div>
+</div>
