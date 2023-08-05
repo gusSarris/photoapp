@@ -1,0 +1,40 @@
+.slider-body {
+    background-image: url('../images/hero.jpg');
+    background-size: cover; /* You can use 'contain', 'cover', '100% 100%', etc. */
+    background-repeat: no-repeat; /* 'repeat', 'repeat-x', 'repeat-y', 'no-repeat', etc. */
+    background-position: center 35%; /* 'top', 'right', 'bottom', 'left', 'x% y%', etc. */
+    /* Other styles for the slider-body element (e.g., width, height, position, etc.) */
+   height: 60vh;  
+   display: flex;
+   justify-items: center;
+   align-items: center;
+}
+.slider-body .is-one-third{
+    background-color: rgba(255, 229, 230, 0.4);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+
+}
+.slider-body .is-one-third input:active,.slider-body .is-one-third select:active{
+    border-color: #fff;
+    outline: none;
+    box-shadow: none;
+}
+.slider-body .is-one-third input:focus,.slider-body .is-one-third select:focus{
+    border-color: #ffe5e6ff;
+    outline: none;
+    box-shadow: none;
+}
+.title{
+    font-size: 4rem;
+    margin-top: -117px;
+}
+.title,.subtitle{
+    color:#fff;
+}
+.subtitle{
+    margin-left: 10px;
+}
+h1 span{
+    color:#ffe5e6
+}
