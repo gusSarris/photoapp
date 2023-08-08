@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PhotographerRepository;
@@ -33,6 +34,14 @@ class Photographer
     #[ORM\ManyToMany(targetEntity: Specialities::class, inversedBy: 'photographers')]
     #[ORM\JoinTable(name: 'photographers_specialities')]
     private Collection $specialities;
+
+    #[ORM\OneToMany(mappedBy: 'p_id', targetEntity: Portfolio::class, orphanRemoval: true)]
+    private Collection $portfolios;
+
+    public function __construct()
+    {
+        $this->portfolios = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -94,6 +103,36 @@ class Photographer
     public function setHourlyRate(string $hourly_rate): static
     {
         $this->hourly_rate = $hourly_rate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Portfolio>
+     */
+    public function getPortfolios(): Collection
+    {
+        return $this->portfolios;
+    }
+
+    public function addPortfolio(Portfolio $portfolio): static
+    {
+        if (!$this->portfolios->contains($portfolio)) {
+            $this->portfolios->add($portfolio);
+            $portfolio->setPId($this);
+        }
+
+        return $this;
+    }
+
+    public function removePortfolio(Portfolio $portfolio): static
+    {
+        if ($this->portfolios->removeElement($portfolio)) {
+            // set the owning side to null (unless already changed)
+            if ($portfolio->getPId() === $this) {
+                $portfolio->setPId(null);
+            }
+        }
 
         return $this;
     }
