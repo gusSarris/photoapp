@@ -38,6 +38,15 @@ class Photographer
     #[ORM\OneToMany(mappedBy: 'p_id', targetEntity: Portfolio::class, orphanRemoval: true)]
     private Collection $portfolios;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $favoritePhoto = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $favorite_title = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $favorite_desc = null;
+
     public function __construct()
     {
         $this->portfolios = new ArrayCollection();
@@ -133,6 +142,42 @@ class Photographer
                 $portfolio->setPId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFavoritePhoto(): ?string
+    {
+        return $this->favoritePhoto;
+    }
+
+    public function setFavoritePhoto(?string $favoritePhoto): static
+    {
+        $this->favoritePhoto = $favoritePhoto;
+
+        return $this;
+    }
+
+    public function getFavoriteTitle(): ?string
+    {
+        return $this->favorite_title;
+    }
+
+    public function setFavoriteTitle(string $favorite_title): static
+    {
+        $this->favorite_title = $favorite_title;
+
+        return $this;
+    }
+
+    public function getFavoriteDesc(): ?string
+    {
+        return $this->favorite_desc;
+    }
+
+    public function setFavoriteDesc(string $favorite_desc): static
+    {
+        $this->favorite_desc = $favorite_desc;
 
         return $this;
     }

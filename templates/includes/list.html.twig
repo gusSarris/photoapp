@@ -1,125 +1,13 @@
 <div class="container photographers-list">
     <h2 class="title is-2 has-text-dark has-text-centered mb-6">Choose a photographer in your location</h2>
-    <div
-        class="is-flex is-justify-content-space-around	">
-        <!-- First Card -->
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="card_img">
-                        <img src={{asset("images/small/img1_small.jpg")}} alt="">
-                    </div>
-                    <div class="card_photographer">
-                    <a href="">John Carpenter</a>
-                    </div>
-                    <h3>Card Title 1</h3>
-                    <p>This is the content of Card 1.</p>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button is-primary">Book Now</button>
-                    <button class="button is-info">View Photos</button>
-                </div>
-            </div>
-        </div>
-        <!-- Second Card -->
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="card_img">
-                        <img src={{asset("images/small/img2_small.jpg")}} alt="">
-                    </div>
-                    <div class="card_photographer">
-                    <a href="">John Carpenter</a>
-                    </div>
-                    <h3>Card Title 2</h3>
-                    <p>This is the content of Card 2.</p>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button is-primary">Book Now</button>
-                    <button class="button is-info">View Photos</button>
-                </div>
-            </div>
-        </div>
-        <!-- Third Card -->
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="card_img">
-                        <img src={{asset("images/small/img3_small.jpg")}} alt="">
-                    </div>
-                    <div class="card_photographer">
-                    <a href="">John Carpenter</a>
-                    </div>
-                    <h3>Card Title 3</h3>
-                    <p>This is the content of Card 3.</p>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button is-primary">Book Now</button>
-                    <button class="button is-info">View Photos</button>
-                </div>
-            </div>
-        </div>
+    {% for photo in photographers %}
+        {% if loop.index0 % 3 == 0 %}
+            <div class="is-flex is-justify-content-space-around">
+        {% endif %}
+                {% include 'includes/card.html.twig' %}
 
-    </div>
-    <div
-        class="is-flex is-justify-content-space-around	">
-        <!-- First Card -->
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="card_img">
-                        <img src={{asset("images/small/img1_small.jpg")}} alt="">
-                    </div>
-                    <div class="card_photographer">
-                    <a href="">John Carpenter</a>
-                    </div>
-                    <h3>Card Title 1</h3>
-                    <p>This is the content of Card 1.</p>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button is-primary">Book Now</button>
-                    <button class="button is-info">View Photos</button>
-                </div>
+        {% if (loop.index0 + 1) % 3 == 0 or loop.last %}
             </div>
-        </div>
-        <!-- Second Card -->
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="card_img">
-                        <img src={{asset("images/small/img2_small.jpg")}} alt="">
-                    </div>
-                    <div class="card_photographer">
-                    <a href="">John Carpenter</a>
-                    </div>
-                    <h3>Card Title 2</h3>
-                    <p>This is the content of Card 2.</p>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button is-primary">Book Now</button>
-                    <button class="button is-info">View Photos</button>
-                </div>
-            </div>
-        </div>
-        <!-- Third Card -->
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="card_img">
-                        <img src={{asset("images/small/img3_small.jpg")}} alt="">
-                    </div>
-                    <div class="card_photographer">
-                    <a href="">John Carpenter</a>
-                    </div>
-                    <h3>Card Title 3</h3>
-                    <p>This is the content of Card 3.</p>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button is-primary">Book Now</button>
-                    <button class="button is-info">View Photos</button>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div></div>
+        {% endif %}
+    {% endfor %}
+</div>
