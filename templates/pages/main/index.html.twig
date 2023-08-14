@@ -1,50 +1,60 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello AccountController!{% endblock %}
-
-{% block body %}
-<section class="slider is-primary">
-  <div class="slider-body">
-    <div class="container">
-      <!-- Title and Subtitle (On Left) -->
-      <div class="columns is-vcentered is-three-thirds">
-        <div class="column titles">
-          <h1 class="title"><span>Capture</span> the Moment: </h1>
-          <h2 class="subtitle">Discover Skilled Photographers Near You!</h2>
-        </div>
-
-        <!-- Search Form (On Right) -->
-        <div class="column is-flex is-flex-direction-column is-one-third">
-          <div class="field mb-5 mt-2">
-            <label class="label">Location</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Enter location">
-            </div>
-          </div>
-
-          <div class="field mb-6">
-            <label class="label">Type</label>
-            <div class="control">
-              <div class="select is-fullwidth">
-                <select class="is-fullwidth">
-                  <option>Wedding</option>
-                  <option>Scenery</option>
-                  <!-- Add more options if needed -->
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="field mt-2">
-            <div class="control">
-              <button class="button is-primary ">Find a photographer</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-        {% include 'includes/list.html.twig' %}
-
+{% block title %}Hello AccountController!
 {% endblock %}
+{% block body %}
+    <section class="slider is-primary">
+        <div class="slider-body">
+            <div
+                class="container">
+                <!-- Title and Subtitle (On Left) -->
+                <div class="columns is-vcentered is-three-thirds">
+                    <div class="column titles">
+                        <h1 class="title">
+                            <span>Capture</span>
+                            the Moment:
+                        </h1>
+                        <h2 class="subtitle">Discover Skilled Photographers Near You!</h2>
+                    </div>
+                    <!-- Search Form (On Right) -->
+                    <div class="column is-flex is-flex-direction-column is-one-third">
+                        <div class="field mb-5 mt-2">
+                            <label class="label">Location</label>
+                            <div class="control">
+                                <input class="input" id="location-input" type="text" placeholder="Enter location"></div>
+                                <div id="location-dropdown" class="dropdown">
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-content">
+                                            <a href="#" class="dropdown-item">San Francisco</a>
+                                            <a href="#" class="dropdown-item">New York</a>
+                                            <a href="#" class="dropdown-item">Chicago</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field mb-6">
+                                <label class="label">Type</label>
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select class="is-fullwidth">
+                                            <option>Wedding</option>
+                                            <option>Scenery</option>
+                                            <!-- Add more options if needed -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field mt-2">
+                                <div class="control">
+                                    <button class="button is-primary ">Find a photographer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% include 'includes/list.html.twig' %}
+    {% endblock %}
+    {% block scripts %} 
+    <script src="scripts/home.js"></script>
+    {% endblock %}
