@@ -15,51 +15,36 @@ class Portfolio
 
     #[ORM\ManyToOne(inversedBy: 'portfolios')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Photographer $p_id = null;
+    private ?Photographer $photographer = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $source = null;
+    private ?string $photo = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPId(): ?Photographer
+    public function getPhotographer(): ?Photographer
     {
-        return $this->p_id;
+        return $this->photographer;
     }
 
-    public function setPId(?Photographer $p_id): static
+    public function setPhotographer(?Photographer $photographer): static
     {
-        $this->p_id = $p_id;
+        $this->photographer = $photographer;
 
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getPhoto(): ?string
     {
-        return $this->title;
+        return $this->photo;
     }
 
-    public function setTitle(string $title): static
+    public function setPhoto(string $photo): static
     {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getSource(): ?string
-    {
-        return $this->source;
-    }
-
-    public function setSource(string $source): static
-    {
-        $this->source = $source;
+        $this->photo = $photo;
 
         return $this;
     }

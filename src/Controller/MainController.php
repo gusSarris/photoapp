@@ -14,7 +14,6 @@ class MainController extends AbstractController
     public function index(PhotographerRepository $photographer): Response
     {
         $photographers=$photographer->getRandomPhotographers();
-        dump($photographers);
         return $this->render('pages/main/index.html.twig', [
             'photographers' => $photographers,
         ]);

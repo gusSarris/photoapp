@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\PhotographerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\PhotographerRepository;
-use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: PhotographerRepository::class)]
 class Photographer
@@ -17,65 +17,38 @@ class Photographer
     private ?int $id = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user_id = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $bio = null;
+    private ?User $user = null;
 
     #[ORM\Column(length: 100)]
     private ?string $location = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $profile_image = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 1)]
+    private ?string $rate = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 1)]
-    private ?string $hourly_rate = null;
-    #[ORM\ManyToMany(targetEntity: Specialities::class, inversedBy: 'photographers')]
-    #[ORM\JoinTable(name: 'photographers_specialities')]
-    private Collection $specialities;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $bio = null;
 
-    #[ORM\OneToMany(mappedBy: 'p_id', targetEntity: Portfolio::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'photographer', targetEntity: Portfolio::class, orphanRemoval: true)]
     private Collection $portfolios;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $favoritePhoto = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $favorite_title = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $favorite_desc = null;
 
     public function __construct()
     {
         $this->portfolios = new ArrayCollection();
     }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(User $user_id): static
+    public function setUser(?User $user): static
     {
-        $this->user_id = $user_id;
-
-        return $this;
-    }
-
-    public function getBio(): ?string
-    {
-        return $this->bio;
-    }
-
-    public function setBio(string $bio): static
-    {
-        $this->bio = $bio;
+        $this->user = $user;
 
         return $this;
     }
@@ -92,26 +65,26 @@ class Photographer
         return $this;
     }
 
-    public function getProfileImage(): ?string
+    public function getRate(): ?string
     {
-        return $this->profile_image;
+        return $this->rate;
     }
 
-    public function setProfileImage(string $profile_image): static
+    public function setRate(string $rate): static
     {
-        $this->profile_image = $profile_image;
+        $this->rate = $rate;
 
         return $this;
     }
 
-    public function getHourlyRate(): ?string
+    public function getBio(): ?string
     {
-        return $this->hourly_rate;
+        return $this->bio;
     }
 
-    public function setHourlyRate(string $hourly_rate): static
+    public function setBio(?string $bio): static
     {
-        $this->hourly_rate = $hourly_rate;
+        $this->bio = $bio;
 
         return $this;
     }
@@ -128,7 +101,7 @@ class Photographer
     {
         if (!$this->portfolios->contains($portfolio)) {
             $this->portfolios->add($portfolio);
-            $portfolio->setPId($this);
+            $portfolio->setPhotographer($this);
         }
 
         return $this;
@@ -138,46 +111,10 @@ class Photographer
     {
         if ($this->portfolios->removeElement($portfolio)) {
             // set the owning side to null (unless already changed)
-            if ($portfolio->getPId() === $this) {
-                $portfolio->setPId(null);
+            if ($portfolio->getPhotographer() === $this) {
+                $portfolio->setPhotographer(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getFavoritePhoto(): ?string
-    {
-        return $this->favoritePhoto;
-    }
-
-    public function setFavoritePhoto(?string $favoritePhoto): static
-    {
-        $this->favoritePhoto = $favoritePhoto;
-
-        return $this;
-    }
-
-    public function getFavoriteTitle(): ?string
-    {
-        return $this->favorite_title;
-    }
-
-    public function setFavoriteTitle(string $favorite_title): static
-    {
-        $this->favorite_title = $favorite_title;
-
-        return $this;
-    }
-
-    public function getFavoriteDesc(): ?string
-    {
-        return $this->favorite_desc;
-    }
-
-    public function setFavoriteDesc(string $favorite_desc): static
-    {
-        $this->favorite_desc = $favorite_desc;
 
         return $this;
     }

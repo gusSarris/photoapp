@@ -18,7 +18,12 @@
                             {{ form_widget(registrationForm.email, {'attr': {'class': 'input' }}) }}
                         </div>
                     </div>
-
+                   <div class="field">
+                        {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'label' }}) }}
+                        <div class="control">
+                            {{ form_widget(registrationForm.username, {'attr': {'class': 'input' }}) }}
+                        </div>
+                    </div>
                     <div class="field">
                         {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'label' }}) }}
                         <div class="control">
