@@ -31,6 +31,12 @@ class Photographer
     #[ORM\OneToMany(mappedBy: 'photographer', targetEntity: Portfolio::class, orphanRemoval: true)]
     private Collection $portfolios;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $facePhoto = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $favouritePhoto = null;
+
     public function __construct()
     {
         $this->portfolios = new ArrayCollection();
@@ -115,6 +121,30 @@ class Photographer
                 $portfolio->setPhotographer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFacePhoto(): ?string
+    {
+        return $this->facePhoto;
+    }
+
+    public function setFacePhoto(?string $facePhoto): static
+    {
+        $this->facePhoto = $facePhoto;
+
+        return $this;
+    }
+
+    public function getFavouritePhoto(): ?string
+    {
+        return $this->favouritePhoto;
+    }
+
+    public function setFavouritePhoto(?string $favouritePhoto): static
+    {
+        $this->favouritePhoto = $favouritePhoto;
 
         return $this;
     }

@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Photographer;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Photographer>
@@ -16,35 +17,16 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PhotographerRepository extends ServiceEntityRepository
 {
+    const VIEW_RANDOM_PHOTOGRAPHERS="select * from get_photographers";
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Photographer::class);
     }
-    public function getRandomPhotographers($index=6){
-
+   // not proper way when photographers are big,just for demonstration
+    public function getRandomPhotographers($index=3){
+        $em= $this->getEntityManager()->getConnection();
+        $query = $em->executeQuery(self::VIEW_RANDOM_PHOTOGRAPHERS.' ORDER BY RAND() limit '.$index.';');
+        return $query->fetchAllAssociative();
     }
-//    /**
-//     * @return Photographer[] Returns an array of Photographer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Photographer
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -1,5 +1,5 @@
 <div class="card ">
-{% set full_image = 'images/small/' ~ photo.favorite_photo %}
+{% set full_image = 'images/fav/' ~ photo.favourite_photo %}
             <div class="card-content">
                 <div class="content">
                     <div class="card_img ">
@@ -8,8 +8,7 @@
                     <div class="card_photographer">
                     <a href="">{{photo.username}}</a>
                     </div>
-                    <h3>{{photo.favorite_title}}</h3>
-                    <p>{{photo.favorite_desc}}</p> 
+                    <p>{{formatter.createSnippet(photo.bio)}}</p> 
                 </div>
                 <div class="buttons has-addons">
                     <button class="button is-primary">Book Now</button>
